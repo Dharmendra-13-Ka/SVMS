@@ -1,6 +1,6 @@
 console.log("SVMS Started");
 
-const API = "http://192.168.56.218:5001/data";
+const API = "/data";
 
 function searchDevice() {
 
@@ -202,7 +202,7 @@ function exportLiveData() {
     }
 
     window.open(
-        "http://192.168.56.218:5001/exportlivedata?device="
+        "/exportlivedata?device="
         + encodeURIComponent(device),
         "_blank"
     );
@@ -218,7 +218,7 @@ function exportFaultLog() {
     }
 
     window.open(
-        "http://192.168.56.218:5001/exportexcel?device="
+        "/exportexcel?device="
         + encodeURIComponent(device),
         "_blank"
     );
@@ -234,7 +234,7 @@ function exportFullReport() {
     }
 
     window.open(
-        "http://192.168.56.218:5001/exportfullreport?device="
+        "/exportfullreport?device="
         + encodeURIComponent(device),
         "_blank"
     );
