@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = "SVMS_SECRET_KEY_2026_CHANGE_LATER"
-DASHBOARD_DIR = r"D:\SVMS\Dashboard"
+DASHBOARD_DIR = os.path.dirname(os.path.abspath(__file__))
 CORS(app)
 
 
