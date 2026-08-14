@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SVMS Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    
+    <script>
+    if (localStorage.getItem("svms_logged_in") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+<h1>SMART VOLTAGE MONITORING SYSTEM</h1>
+
+<div class="menu">
+
+<button onclick="showLive()">Live Data</button>
+
+<button onclick="showFault()">Fault Log</button>
+
+<button onclick="showPower()">Power</button>
+
+<button onclick="showReport()">Reports</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+<hr>
+
+<!-- LIVE DATA -->
+
+<div id="livePage">
+
+<h2>Live Data</h2>
+
+<input type="text" id="deviceId" placeholder="Enter Device ID">
+
+<button onclick="searchDevice()">
+Search
+</button>
+
+<h3 id="deviceName">
+Device ID : TVS001
+</h3>
+
+<h3 id="voltage">Current Voltage : 230 V</h3>
+
+<h3 id="minvoltage">Minimum Voltage : 190 V</h3>
+
+<h3 id="maxvoltage">Maximum Voltage : 245 V</h3>
+
+<h3 id="current">Current : 5.20 A</h3>
+
+<h3 id="mincurrent">Minimum Current : 2.10 A</h3>
+
+<h3 id="maxcurrent">Maximum Current : 15.80 A</h3>
+
+<h3 id="power">Power : 1196 W</h3>
+
+<h3 id="relay">Relay Status : ON</h3>
+
+<h3 id="charger">Charger Status : ON</h3>
+
+<h3 id="alarm">Alarm : NORMAL</h3>
+
+<br>
+
+<button onclick="relayOn()">TURN ON</button>
+
+<button onclick="relayOff()">TURN OFF</button>
+
+</div>
+
+<!-- FAULT LOG -->
+
+<div id="faultPage" style="display:none;">
+
+    <h2>Fault Log</h2>
+
+    <input
+        type="text"
+        id="faultDeviceId"
+        placeholder="Enter Device ID"
+    >
+
+    <button onclick="searchFaultLog()">
+        Search
+    </button>
+
+    <button onclick="clearFaultLog()">
+    🗑️ Clear Fault Log
+    </button>
+
+    <br><br>
+
+    <table
+        id="faultTable"
+        border="1"
+        width="100%"
+    >
+
+        <tr>
+
+            <th>Date</th>
+
+            <th>Fault Start</th>
+
+            <th>Start Voltage</th>
+
+            <th>Fault</th>
+
+            <th>Relay</th>
+
+            <th>Fault Resolve</th>
+
+            <th>Resolve Voltage</th>
+
+            <th>Duration</th>
+
+            <th>Status</th>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- POWER -->
+
+<div id="powerPage" style="display:none;">
+
+<h2>Power Control</h2>
+
+<p>Coming Soon...</p>
+
+</div>
+
+<!-- REPORT -->
+
+<div id="reportPage" style="display:none;">
+
+    <h2>Reports</h2>
+
+    <!-- DEVICE ID -->
+
+    <div class="report-section">
+
+        <h3>Device ID</h3>
+
+        <input
+            type="text"
+            id="reportDeviceId"
+            placeholder="Enter Device ID"
+            value="TVS001"
+        >
+
+    </div>
+
+
+    <br>
+
+
+    <!-- LIVE DATA -->
+
+    <div class="report-section">
+
+        <h3>Live Data Report</h3>
+
+        <button onclick="exportLiveData()">
+            📄 Export Live Data
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- FAULT LOG -->
+
+    <div class="report-section">
+
+        <h3>Fault Log Report</h3>
+
+        <button onclick="exportFaultLog()">
+            📄 Export Fault Log
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- FULL REPORT -->
+
+    <div class="report-section">
+
+        <h3>Full Report</h3>
+
+        <button onclick="exportFullReport()">
+            📊 Export Full Report
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script src="faultlog.js"></script>
+
+</body>
+
+</html>
