@@ -12,7 +12,7 @@ async function loadFaultLog() {
         }
 
         const response = await fetch(
-            "http://192.168.56.218:5001/faultlog?device="
+            "/faultlog?device="
             + encodeURIComponent(device)
         );
 
@@ -104,7 +104,7 @@ function clearFaultLog() {
     }
 
     fetch(
-        "http://192.168.56.218:5001/clearfaultlog?device="
+        "/clearfaultlog?device="
         + encodeURIComponent(device),
         {
             method: "POST"
