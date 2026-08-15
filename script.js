@@ -137,7 +137,7 @@ setInterval(searchDevice,1000);
 
 function exportExcel()
 {
-    window.open("http://192.168.56.218:5001/exportexcel","_blank");
+    window.open("/exportexcel","_blank");
 }
 function searchFaultLog()
 {
