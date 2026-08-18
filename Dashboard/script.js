@@ -157,11 +157,7 @@ function relayOff()
         })
     })
     .then(response => response.json())
-    .then(data => {
-    console.log("Relay OFF:", data);
-    alert("Power OFF Successfully");
-    searchDevice();
-})
+    
     .catch(err => console.log(err));
 }
 
@@ -280,10 +276,10 @@ function searchPowerHistory() {
     // Fixed Device ID
     const deviceId = "TVS001";
 
-    fetch(
-        "http://192.168.56.218:5001/powerhistory?device="
-        + encodeURIComponent(deviceId)
-    )
+fetch(
+    "/powerhistory?device="
+    + encodeURIComponent(deviceId)
+)
 
     .then(response => {
 
