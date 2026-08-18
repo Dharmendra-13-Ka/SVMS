@@ -53,8 +53,17 @@ active_fault = None
 # POWER HISTORY STORAGE
 # ==================================================
 
-POWER_HISTORY_FILE = "power_history.json"
-POWER_ACTIVE_FILE = "power_active.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+POWER_HISTORY_FILE = os.path.join(
+    BASE_DIR,
+    "power_history.json"
+)
+
+POWER_ACTIVE_FILE = os.path.join(
+    BASE_DIR,
+    "power_active.json"
+)
 
 power_history = []
 active_power_sessions = {}
