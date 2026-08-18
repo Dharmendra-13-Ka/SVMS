@@ -1,6 +1,6 @@
 console.log("SVMS Started");
 
-const API = "/data";
+const API = "https://svms-zgsx.onrender.com/data";
 
 function searchDevice() {
 
@@ -125,12 +125,44 @@ function searchDevice() {
 
 function relayOn()
 {
-    alert("Relay ON");
+    fetch("/relay", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            device_id: document.getElementById("deviceId").value || "TVS001",
+            relay: "ON"
+        })
+    })
+        .then(data => {
+        console.log("Relay ON:", data);
+        alert("Power ON Successfully");
+        searchDevice();
+    })
+    .catch(err => console.log(err));
 }
+
 
 function relayOff()
 {
-    alert("Relay OFF");
+    fetch("/relay", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            device_id: document.getElementById("deviceId").value || "TVS001",
+            relay: "OFF"
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log("Relay OFF:", data);
+    alert("Power OFF Successfully");
+    searchDevice();
+})
+    .catch(err => console.log(err));
 }
 
 setInterval(searchDevice,1000);
@@ -238,4 +270,129 @@ function exportFullReport() {
         + encodeURIComponent(device),
         "_blank"
     );
+}
+// ==================================================
+// POWER HISTORY - TVS001
+// ==================================================
+
+function searchPowerHistory() {
+
+    // Fixed Device ID
+    const deviceId = "TVS001";
+
+    fetch(
+        "http://192.168.56.218:5001/powerhistory?device="
+        + encodeURIComponent(deviceId)
+    )
+
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Server Error");
+        }
+
+        return response.json();
+    })
+
+    .then(data => {
+
+        const table =
+            document.getElementById("powerTable");
+
+        // Keep header row
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+
+        // No data found
+        if (data.length === 0) {
+
+            alert(
+                "No Power History Found for TVS001."
+            );
+
+            return;
+        }
+
+        // Add Power History
+        data.forEach(session => {
+
+            const row = table.insertRow();
+
+            row.insertCell(0).innerText =
+                session.date || "";
+
+            row.insertCell(1).innerText =
+                session.on_time || "";
+
+            row.insertCell(2).innerText =
+                session.off_time || "Running";
+
+            row.insertCell(3).innerText =
+                session.duration || "";
+
+            row.insertCell(4).innerText =
+                session.units_used !== undefined
+                    ? session.units_used + " kWh"
+                    : "";
+
+            row.insertCell(5).innerText =
+                session.min_voltage !== undefined
+                    ? session.min_voltage + " V"
+                    : "";
+
+            row.insertCell(6).innerText =
+                session.max_voltage !== undefined
+                    ? session.max_voltage + " V"
+                    : "";
+
+            row.insertCell(7).innerText =
+                session.avg_voltage !== undefined
+                    ? session.avg_voltage + " V"
+                    : "";
+
+            row.insertCell(8).innerText =
+                session.min_current !== undefined
+                    ? session.min_current + " A"
+                    : "";
+
+            row.insertCell(9).innerText =
+                session.max_current !== undefined
+                    ? session.max_current + " A"
+                    : "";
+
+            row.insertCell(10).innerText =
+                session.avg_current !== undefined
+                    ? session.avg_current + " A"
+                    : "";
+
+            row.insertCell(11).innerText =
+                session.max_load !== undefined
+                    ? session.max_load + " W"
+                    : "";
+
+            row.insertCell(12).innerText =
+                session.avg_load !== undefined
+                    ? session.avg_load + " W"
+                    : "";
+
+            row.insertCell(13).innerText =
+                session.status || "";
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.error(
+            "Power History Error:",
+            error
+        );
+
+        alert(
+            "Power History load nahi ho paayi."
+        );
+
+    });
 }

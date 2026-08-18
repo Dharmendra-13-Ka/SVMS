@@ -9,7 +9,7 @@ function login() {
         return;
     }
 
-    fetch("/login", {
+    fetch("https://svms-zgsx.onrender.com/login", {
 
         method: "POST",
 

@@ -141,12 +141,56 @@ Device ID : TVS001
 
 <div id="powerPage" style="display:none;">
 
-<h2>Power Control</h2>
+    <h2>Power History</h2>
 
-<p>Coming Soon...</p>
+<input
+    type="text"
+    value="TVS001"
+    readonly
+>
+
+    <button onclick="searchPowerHistory()">
+    Refresh Power History
+    </button>
+
+    <br><br>
+
+    <div style="overflow-x:auto;">
+
+        <table
+            id="powerTable"
+            border="1"
+            width="100%"
+        >
+
+            <tr>
+
+                <th>Date</th>
+                <th>ON Time</th>
+                <th>OFF Time</th>
+                <th>Duration</th>
+                <th>Units Used</th>
+
+                <th>Min V</th>
+                <th>Max V</th>
+                <th>Avg V</th>
+
+                <th>Min A</th>
+                <th>Max A</th>
+                <th>Avg A</th>
+
+                <th>Max Load</th>
+                <th>Avg Load</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </table>
+
+    </div>
 
 </div>
-
 <!-- REPORT -->
 
 <div id="reportPage" style="display:none;">

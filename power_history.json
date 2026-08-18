@@ -1,0 +1,42 @@
+[
+    {
+        "session_id": 1,
+        "device_id": "TVS001",
+        "date": "18-08-2026",
+        "on_time": "17:56:34",
+        "off_time": "17:57:05",
+        "duration": "0h 0m 30s",
+        "start_energy": 0.0,
+        "end_energy": 0.0,
+        "units_used": 0,
+        "min_voltage": 0.0,
+        "max_voltage": 0.0,
+        "avg_voltage": 0.0,
+        "min_current": 0.0,
+        "max_current": 0.0,
+        "avg_current": 0.0,
+        "max_load": 0.0,
+        "avg_load": 0.0,
+        "status": "COMPLETED"
+    },
+    {
+        "session_id": 2,
+        "device_id": "TVS001",
+        "date": "18-08-2026",
+        "on_time": "18:02:21",
+        "off_time": "18:03:02",
+        "duration": "0h 0m 41s",
+        "start_energy": 0.0,
+        "end_energy": 0.0,
+        "units_used": 0,
+        "min_voltage": 0.0,
+        "max_voltage": 0.0,
+        "avg_voltage": 0.0,
+        "min_current": 0.0,
+        "max_current": 0.0,
+        "avg_current": 0.0,
+        "max_load": 0.0,
+        "avg_load": 0.0,
+        "status": "COMPLETED"
+    }
+]
