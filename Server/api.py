@@ -9,7 +9,13 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = "SVMS_SECRET_KEY_2026_CHANGE_LATER"
-DASHBOARD_DIR = r"D:\SVMS\Dashboard"
+DASHBOARD_DIR = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__),
+        "..",
+        "Dashboard"
+    )
+)
 CORS(app)
 
 
@@ -686,7 +692,7 @@ def update():
         current_alarm = "NORMAL"
 
     live_data["alarm"] = current_alarm
-    
+
     # AUTOMATIC RELAY OFF ON VOLTAGE FAULT
     if current_alarm != "NORMAL":
         live_data["relay"] = "OFF"
